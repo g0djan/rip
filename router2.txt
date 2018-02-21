@@ -1,0 +1,201 @@
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.10.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 192.168.10.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 192.168.2.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet1/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router rip
+Router(config-router)#network 192.168.10.0
+Router(config-router)#network 192.168.10.4
+Router(config-router)#network 192.168.2.0
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router rip
+Router(config-router)#no au
+Router(config-router)#no auto-summary 
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router rip
+Router(config-router)#redist
+Router(config-router)#redistribute conn
+Router(config-router)#redistribute connected 
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router>
+Router>
